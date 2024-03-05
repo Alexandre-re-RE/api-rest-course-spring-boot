@@ -1,15 +1,9 @@
 version: "3.9"
 services:
   webapp:
-    container_name: API_REST
+    container_name: JENKINS
     build:
       context: .
-      dockerfile: ./docker/Dockerfile
-    ports:
-      - "8081:8081"
-      
-  cicd:
-    container_name: Jenkins   
-    image: jenkins/jenkins:jdk17
+      dockerfile: ./Dockerfile
     ports:
       - "8080:8080"
