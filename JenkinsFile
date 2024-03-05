@@ -1,7 +1,7 @@
 node {
 	    // reference to maven
 	    // ** NOTE: This 'maven-3.5.2' Maven tool must be configured in the Jenkins Global Configuration.   
-	    def mvnHome = tool 'maven-3.9.6'
+	    def mvnHome = tool 'MAVEN_3.9.6'
 	    
 	    stage('Clone Repo') { // for display purposes
 	      // Get some code from a GitHub repository
@@ -9,7 +9,7 @@ node {
 	      // Get the Maven tool.
 	      // ** NOTE: This 'maven-3.5.2' Maven tool must be configured
 	      // **       in the global configuration.           
-	      mvnHome = tool 'maven-3.9.6'
+	      mvnHome = tool 'MAVEN_3.9.6'
 	    }    
 	  
 	    stage('Build Project') {
