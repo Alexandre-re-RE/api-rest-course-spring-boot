@@ -17,13 +17,8 @@ node {
 	      sh "'${mvnHome}/bin/mvn' clean install"
 	    }
 			
-	    stage('Build Docker Image') {
-	      // build docker image
-	      sh "docker build -t spring docker/Dockerfile"
-	    }
-	   
-	    stage('Deploy Docker Image'){
-		  sh "docker run spring"
+	    stage('Deploy') {
+	      sshPublisher(publishers: [sshPublisherDesc(configName: 'APU-SPRING', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'echo "hi"', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'target/api-rest-course-spring-boot-0.0.1-SNAPSHOT.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 	    }
 
 	}
