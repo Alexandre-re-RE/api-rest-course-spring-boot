@@ -1,9 +1,5 @@
-# Dockerfile
-FROM ubuntu
-
-#Installation des diférents packages
-RUN apt-get update && apt-get upgrade -y && apt-get install -y libpq-dev zlib1g-dev libicu-dev nano default-jdk
-
-# /home/alexandre/app/app.jar
-# Démarre apache automatiquement
-# CMD ["java -jar /home/alexandre/app/app.jar"]
+FROM eclipse-temurin:17-jdk-alpine
+VOLUME /tmp
+ADD target/api-rest-course-spring-boot-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+EXPOSE 8083
