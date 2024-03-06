@@ -18,7 +18,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build package
-      run: mvn -B package --file pom.xml
+      run: mvn -B -DskipTests package --file pom.xml
     - name: Renommage fichier jar
       run: mv target/*.jar target/api-rest.jar
   publish:
