@@ -18,7 +18,7 @@ node {
 	    }
 			
 	    stage('Deploy') {
-	      sshPublisher(publishers: [sshPublisherDesc(configName: 'APU-SPRING', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'java -jar api-rest-course-spring-boot-0.0.1-SNAPSHOT.jar', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/api-rest-course-spring-boot-0.0.1-SNAPSHOT.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+	      sshPublisher(publishers: [sshPublisherDesc(configName: 'APU-SPRING', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'java -jar api-rest-course-spring-boot-0.0.1-SNAPSHOT.jar &', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/api-rest-course-spring-boot-0.0.1-SNAPSHOT.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 	    }
 
 	}
