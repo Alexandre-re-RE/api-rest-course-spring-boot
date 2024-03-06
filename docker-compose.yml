@@ -4,8 +4,8 @@ services:
     container_name: JENKINS
     image: jenkins/jenkins:jdk17
     ports:
-      - "8080:8080"
-      - "50000:50000"
+      - "8081:8080"
+      - "50001:50000"
 
   app:
     container_name: APP
@@ -14,5 +14,6 @@ services:
       dockerfile: ./docker/Dockerfile
     ports:
       - "8083:8083"
+      - "2222:22"
     stdin_open: true
     tty: true

@@ -1,18 +1,15 @@
-# Dockerfile
-FROM ubuntu:latest
+FROM alpine:latest
 
+# Add a new user
+RUN adduser -D expernet
+
+# Create a directory and set permissions
+RUN mkdir -p /home/expernet/app && \
+    chown -R expernet:expernet /home/expernet
+
+# Install required packages
+RUN apk add --no-cache openjdk17 nano openssh-server
+
+# Expose port 8083
 EXPOSE 8083
-
-#Installation des diférents packages
-RUN apt-get update && apt-get upgrade -y && apt-get install -y openjdk-17-jdk openjdk-17-jre nano openssh-server
-
-#Restart ssh server
-RUN service ssh restart
-
-#Permit root login
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-
-#Restart ssh server
-RUN service ssh restart
-
-RUN echo "root" | passwd --stdin root
+EXPOSE 22
