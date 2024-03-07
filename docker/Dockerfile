@@ -1,18 +1,33 @@
-# Dockerfile
-FROM ubuntu:latest
+FROM alpine
 
-EXPOSE 8083
+#default args for user
+ARG APP_USER
+ARG APP_PASSWORD
+ARG API_EXPOSE_PORT
 
-#Installation des diférents packages
-RUN apt-get update && apt-get upgrade -y && apt-get install -y openjdk-17-jdk openjdk-17-jre nano openssh-server
+# Install required packages
+RUN apk update && \
+    apk add --no-cache openssh-server openjdk17 nano && \
+    rm -rf /var/cache/apk/* && \
+    ssh-keygen -A
 
-#Restart ssh server
-RUN service ssh restart
+# Add a new user
+RUN adduser -D $APP_USER
 
-#Permit root login
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+# Create a directory and set permissions
+RUN mkdir -p /home/$APP_USER/app && \
+    chown -R $APP_USER:$APP_USER /home/$APP_USER \
+    && echo "$APP_USER:$APP_PASSWORD" | chpasswd
 
-#Restart ssh server
-RUN service ssh restart
+COPY /docker/restart.sh /home/$APP_USER/app/
 
-RUN echo "root" | passwd --stdin root
+RUN chmod +x /home/$APP_USER/app/restart.sh && \
+    chown -R $APP_USER:$APP_USER /home/$APP_USER
+
+RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
+
+# Expose port 8083
+EXPOSE $API_EXPOSE_PORT
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd", "-D"]
