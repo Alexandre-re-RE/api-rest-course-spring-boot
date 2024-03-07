@@ -21,15 +21,25 @@ jobs:
       run: mvn -B -DskipTests package --file pom.xml
     - name: Renommage fichier jar
       run: mv target/*.jar target/api-rest.jar
-    - name: Copy build jar to production folder
-      uses: appleboy/scp-action@v0.1.7
+    - name: Deploy file
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        source: "target/api-rest.jar"
-        target: "/home/expernet/app"
+          username: ${{ secrets.USERNAME }}
+          server: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          local_path: './target/api-rest.jar'
+          remote_path: '/home/expernet/app'
+          sftp_only: true
+          password: ${{ secrets.PASSWORD }}
+    # - name: Copy build jar to production folder
+    #   uses: appleboy/scp-action@v0.1.7
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.USERNAME }}
+    #     password: ${{ secrets.PASSWORD }}
+    #     port: ${{ secrets.PORT }}
+    #     source: "target/api-rest.jar"
+    #     target: "/home/expernet/app"
     
   launch:
     runs-on: ubuntu-latest
