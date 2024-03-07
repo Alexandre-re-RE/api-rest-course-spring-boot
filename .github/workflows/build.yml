@@ -24,13 +24,13 @@ jobs:
     - name: Deploy file
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
-          username: ${{ secrets.USERNAME }}
-          server: ${{ secrets.HOST }}
-          port: ${{ secrets.PORT }}
-          local_path: './target/api-rest.jar'
-          remote_path: '/home/expernet/app'
-          sftp_only: true
-          password: ${{ secrets.PASSWORD }}
+        username: ${{ secrets.USERNAME }}
+        server: ${{ secrets.HOST }}
+        port: ${{ secrets.PORT }}
+        local_path: './target/api-rest.jar'
+        remote_path: '/home/expernet/app'
+        sftp_only: true
+        password: ${{ secrets.PASSWORD }}
     # - name: Copy build jar to production folder
     #   uses: appleboy/scp-action@v0.1.7
     #   with:
