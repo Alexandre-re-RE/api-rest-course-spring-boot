@@ -1,8 +1,9 @@
 FROM alpine
 
 #default args for user
-ARG APP_USER=expernet
-ARG APP_PASSWORD=JdhVv1XlqwMt5Hp
+ARG APP_USER
+ARG APP_PASSWORD
+ARG API_EXPOSE_PORT
 
 # Install required packages
 RUN apk update && \
@@ -26,7 +27,7 @@ RUN chmod +x /home/$APP_USER/app/restart.sh && \
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
 
 # Expose port 8083
-EXPOSE 8083
+EXPOSE $API_EXPOSE_PORT
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]

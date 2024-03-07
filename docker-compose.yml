@@ -13,12 +13,19 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile
       args:
-        - APP_USER=expernet
-        - APP_PASSWORD=Hgdgk56HVSG6dg
+        - APP_USER=${APP_USER}
+        - APP_PASSWORD=${APP_PASSWORD}
+        - API_EXPOSE_PORT=${API_EXPOSE_PORT}
     ports:
-      - "8083:8083"
-      - "2222:22"
+      - "${API_EXPOSE_PORT}:${API_EXPOSE_PORT}"
+      - "${SSH_EXPOSE_PORT}:22"
     stdin_open: true
     tty: true
+    restart: always
+    environment:
+      - APP_USER
+      - APP_PASSWORD
+      - API_EXPOSE_PORT
+      - SSH_EXPOSE_PORT
 
-#docker-compose up --build  
+#docker-compose up --build -d
