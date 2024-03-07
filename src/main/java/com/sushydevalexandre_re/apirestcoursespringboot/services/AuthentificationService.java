@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.sushydevalexandre_re.apirestcoursespringboot.configsecurity.Role;
 import com.sushydevalexandre_re.apirestcoursespringboot.models.LoginResponseDTO;
 import com.sushydevalexandre_re.apirestcoursespringboot.models.Utilisateur;
