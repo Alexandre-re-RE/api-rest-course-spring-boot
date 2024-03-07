@@ -52,4 +52,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: sh /home/expernet/app/restart.sh
+        script: | 
+          sh /home/expernet/app/restart.sh
+          whoami
