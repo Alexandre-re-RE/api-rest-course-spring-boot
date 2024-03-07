@@ -4,8 +4,8 @@ services:
   #   container_name: JENKINS
   #   image: jenkins/jenkins:jdk17
   #   ports:
-  #     - "8081:8080"
-  #     - "50001:50000"
+  #     - "${JENKINS_EXPORT_PORT_HTTP}:8080"
+  #     - "${JENKINS_EXPORT_PORT_WEBSOCKET}:50000"
 
   app:
     container_name: APP
@@ -27,5 +27,7 @@ services:
       - APP_PASSWORD
       - API_EXPOSE_PORT
       - SSH_EXPOSE_PORT
+      # - JENKINS_EXPORT_PORT_HTTP
+      # - JENKINS_EXPORT_PORT_WEBSOCKET
 
 #docker-compose up --build -d
