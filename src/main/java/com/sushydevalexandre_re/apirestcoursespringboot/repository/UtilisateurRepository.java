@@ -10,13 +10,13 @@ import com.sushydevalexandre_re.apirestcoursespringboot.models.Utilisateur;
 
 
 @Repository
-public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
+public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
 	
-    Utilisateur findByUsername(String username);
+    Optional<Utilisateur> findByUsername(String username);
     
 
     Utilisateur findByNom(String nom);
     
-    Optional<Utilisateur> findById(Long id);
+    Optional<Utilisateur> findById(Integer id);
 
 }
