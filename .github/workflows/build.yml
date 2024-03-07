@@ -21,19 +21,16 @@ jobs:
       run: mvn -B -DskipTests package --file pom.xml
     - name: Renommage fichier jar
       run: mv target/*.jar target/api-rest.jar
-  publish:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
     - name: Copy build jar to production folder
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        source: "target/api-rest.jar"
-        target: "/home/expernet/app"
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          source: "target/api-rest.jar"
+          target: "/home/expernet/app"
+    
   launch:
     runs-on: ubuntu-latest
     needs: publish
