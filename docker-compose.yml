@@ -1,19 +1,24 @@
 version: "3.9"
 services:
-  jenkins:
-    container_name: JENKINS
-    image: jenkins/jenkins:jdk17
-    ports:
-      - "8081:8080"
-      - "50001:50000"
+  # jenkins:
+  #   container_name: JENKINS
+  #   image: jenkins/jenkins:jdk17
+  #   ports:
+  #     - "8081:8080"
+  #     - "50001:50000"
 
   app:
     container_name: APP
     build:
       context: .
       dockerfile: ./docker/Dockerfile
+      args:
+        - APP_USER=alexandro
+        - APP_PASSWORD=Hgdgk56HVSG6dg
     ports:
       - "8083:8083"
       - "2222:22"
     stdin_open: true
     tty: true
+
+#docker-compose up --build  
