@@ -1,0 +1,11 @@
+{
+  "label": "Endpoints",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "className": "green",
+  "link": {
+    "type": "generated-index",
+    "description": "urls."
+  }
+}

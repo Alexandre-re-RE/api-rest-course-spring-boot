@@ -66,10 +66,6 @@ const config = {
           },
         ],
       },
-      footer: {
-        style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} purchase groups, Inc.`,
-      },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,

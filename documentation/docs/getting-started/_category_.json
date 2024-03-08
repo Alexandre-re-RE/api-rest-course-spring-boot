@@ -1,0 +1,11 @@
+{
+  "label": "Get Started",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": false,
+  "className": "green",
+  "link": {
+    "type": "generated-index",
+    "description": "Notre projet vise à développer une API REST qui permettra aux utilisateurs de créer et de gérer des listes de courses partagées de manière efficace et intuitive. Cette API offrira une plateforme flexible et sécurisée pour les utilisateurs qui souhaitent collaborer sur des listes de courses, que ce soit en famille, entre colocataires ou pour des événements spécifiques tels que des fêtes ou des voyages."
+  }
+}
